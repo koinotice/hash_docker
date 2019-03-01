@@ -11,6 +11,7 @@ eth
 log
 logs
 lab
+apisever
 parse/node_modules
 hash/node_modules
 fuel-web3-provider

@@ -24,7 +24,7 @@ parseArray.forEach(appId =>
         appId: appId,
         databaseURI: db.buildConnectionUrl(process.env, appId),
         liveQuery: {
-            classNames: ["Room", "Order","Token","Block"] // List of classes to support for query subscriptions
+            classNames: ["Room", "Order","Token","Block","Message"] // List of classes to support for query subscriptions
         }
        // cloud: "./cloud/"+appId,
     });
@@ -50,4 +50,13 @@ app.use('/dashboard/', dashboard);
 app.get('/', (req, res) => res.status(200).send('Welcome to Parse Server'));
 
 let port = process.env.PARSE_PORT || 1337;
-app.listen(port, () => console.log(`Parse Server is running on port ${port}.`));
+// app.listen(port, () => console.log(`Parse Server is running on port ${port}.`));
+
+//const port = config('PORT')
+const httpServer = require('http').createServer(app)
+httpServer.listen(port, function () {
+    log.info('Paraffin API Server is running on port ' + port + '.')
+})
+
+// This will enable the Live Query real-time server
+ParseServer.createLiveQueryServer(httpServer)
