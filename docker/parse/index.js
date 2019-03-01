@@ -55,7 +55,7 @@ let port = process.env.PARSE_PORT || 1337;
 //const port = config('PORT')
 const httpServer = require('http').createServer(app)
 httpServer.listen(port, function () {
-    log.info('Paraffin API Server is running on port ' + port + '.')
+    console.log('Paraffin API Server is running on port ' + port + '.')
 })
 
 // This will enable the Live Query real-time server
