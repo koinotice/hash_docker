@@ -23,6 +23,7 @@ parseArray.forEach(appId =>
         masterKey: process.env.PARSE_MASTER_KEY,
         javascriptKey: process.env.PARSE_CLIENT_KEY, //Add your master key here. Keep it secret!
         clientKey: process.env.PARSE_CLIENT_KEY,
+        restAPIKey:process.env.PARSE_CLIENT_KEY,
         appId: appId,
         databaseURI: db.buildConnectionUrl(process.env, appId),
         liveQuery: {

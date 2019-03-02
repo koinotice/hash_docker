@@ -123,7 +123,8 @@ services:
     env_file:
     - .env
     volumes:
-    - ./parse/cloud:/app/cloud
+      #- ./dokcer/parse:/app
+      - ./parse/cloud:/app/cloud
 
 
 
