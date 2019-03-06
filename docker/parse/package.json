@@ -4,10 +4,11 @@
     "license": "Apache-2.0",
     "main": "index.js",
     "dependencies": {
+        "dotenv": "^6.2.0",
         "express": "latest",
-        "parse-server": "latest",
+        "mongodb": "latest",
         "parse-dashboard": "latest",
-        "mongodb":"latest"
+        "parse-server": "latest"
     },
     "scripts": {
         "start": "node index.js"

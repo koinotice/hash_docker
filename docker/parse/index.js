@@ -1,3 +1,9 @@
+if (!process.env.docker) {
+    require('dotenv').config({
+        path: __dirname + '/.env'
+    });
+}
+
 let express = require('express');
 let ParseServer = require('parse-server').ParseServer;
 let ParseDashboard = require('parse-dashboard');
@@ -17,20 +23,40 @@ parseArray.forEach(appId =>
         'appId': appId,
         'appName': appId
     });
-
-    let parseApp = new ParseServer({
+    const parseSetting={
         //serverURL: process.env.SERVER_URL,
         masterKey: process.env.PARSE_MASTER_KEY,
-        javascriptKey: process.env.PARSE_CLIENT_KEY, //Add your master key here. Keep it secret!
-        clientKey: process.env.PARSE_CLIENT_KEY,
-        restAPIKey:process.env.PARSE_CLIENT_KEY,
+         javascriptKey: process.env.PARSE_CLIENT_KEY, //Add your master key here. Keep it secret!
+        // clientKey: process.env.PARSE_CLIENT_KEY,
+        // restAPIKey:process.env.PARSE_CLIENT_KEY,
+        //readOnlyMasterKey: process.env.PARSE_CLIENT_KEY,
+        allowClientClassCreation:false,
         appId: appId,
         databaseURI: db.buildConnectionUrl(process.env, appId),
         liveQuery: {
             classNames: ["Room", "Order","Token","Block","Message"] // List of classes to support for query subscriptions
-        }
-       // cloud: "./cloud/"+appId,
-    });
+        },
+        // enableAnonymousUsers:false,
+        // requiresAuthentication:{
+        //     classLevelPermissions:
+        //         {
+        //             "find": {
+        //                 "requiresAuthentication": true,
+        //                 "role:admin": true
+        //             },
+        //             "get": {
+        //                 "requiresAuthentication": true,
+        //                 "role:admin": true
+        //             },
+        //             "create": { "role:admin": true },
+        //             "update": { "role:admin": true },
+        //             "delete": { "role:admin": true },
+        //         }
+        // }
+        // cloud: "./cloud/"+appId,
+    }
+    console.log(parseSetting)
+    let parseApp = new ParseServer(parseSetting);
 
     // Serve the Parse apps on the /app URL prefix
     app.use(`/app/${appId}`, parseApp);
