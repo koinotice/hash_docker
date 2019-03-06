@@ -126,23 +126,23 @@ services:
       - ./docker/parse:/app
       - ./parse/cloud:/app/cloud
 
-  aria2:
-    image: aria2:1.0
-    build:
-      context: './docker/aria2'
-    container_name: aria2
-
-    ports:
-      - 7322:80
-      - 6800:6800
-      - 7320:8080
-    restart: always
-
-    #environment:
-    # SECRET=YOUR_SECRET_CODE
-    volumes:
-      - /hash/data/download:/aria2/downloads
-      - /hash/data/conf:/aria2/conf
+#  aria2:
+#    image: aria2:1.0
+#    build:
+#      context: './docker/aria2'
+#    container_name: aria2
+#
+#    ports:
+#      - 7322:80
+#      - 6800:6800
+#      - 7320:8080
+#    restart: always
+#
+#    #environment:
+#    # SECRET=YOUR_SECRET_CODE
+#    volumes:
+#      - /hash/data/download:/aria2/downloads
+#      - /hash/data/conf:/aria2/conf
 
 
 
